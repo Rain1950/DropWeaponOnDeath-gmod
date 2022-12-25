@@ -19,6 +19,7 @@ DropWeaponOnDeath.Config.BlacklistedWeapons = {
    "weapon_fists",
    "arrest_stick",
    "weapon_physcannon",
-   "gmod_tool"
+   "gmod_tool",
+   "weapon_physgun",
 }
 
