@@ -4,6 +4,7 @@ DropWeaponOnDeath.Config.WeaponVelocity = 1000  // velocity of weapon that is th
  
 DropWeaponOnDeath.Config.DiscardWeaponsFromExplosion = true      // discard weapons if player died from explosion
 
+DropWeaponOnDeath.Config.RemovePhysicsFromWeapons = true    // remove physics from weapon if velocity is 0. 
 
 DropWeaponOnDeath.Config.BlacklistedJobs = {
   "Medic",                                                //jobs that don't drop any weapons
