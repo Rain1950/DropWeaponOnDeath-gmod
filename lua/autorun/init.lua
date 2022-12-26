@@ -45,7 +45,7 @@ hook.Add("Think","CheckGround",function ()
     end)
 
 
-hook.Add("DoPlayerDeath","habibi",function (ply,attacker,dmg)
+hook.Add("DoPlayerDeath","DropWeaponOnDeath",function (ply,attacker,dmg)
      if dmg:IsExplosionDamage() && DropWeaponOnDeath.Config.DiscardWeaponsFromExplosion == true   then 
           return  
      end // if damage is from explosion, don't drop the weapon
@@ -55,9 +55,14 @@ hook.Add("DoPlayerDeath","habibi",function (ply,attacker,dmg)
      if checkTable(JobName,DropWeaponOnDeath.Config.BlacklistedJobs) then
           return 
      else 
-          weapon = ply:GetActiveWeapon()         
+          weapon = ply:GetActiveWeapon()       
           if checkTable(weapon:GetClass(),DropWeaponOnDeath.Config.BlacklistedWeapons) == false  then
-               ply:DropWeapon(weapon,nil,attacker:GetAimVector() * DropWeaponOnDeath.Config.WeaponVelocity)
+               if IsValid(attacker) then
+                    aimVector = attacker:GetAimVector()
+               else
+                    aimVector = VectorRand(0,10)
+               end
+               ply:DropWeapon(weapon,nil,aimVector * DropWeaponOnDeath.Config.WeaponVelocity)
                weapon:SetLocalAngularVelocity(AngleRand(-90,90))
                CheckGround = true
           end
