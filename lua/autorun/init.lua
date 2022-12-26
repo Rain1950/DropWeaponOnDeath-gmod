@@ -30,6 +30,10 @@ hook.Add("Think","CheckGround",function ()
           if weapon:IsValid() == false  then return 
           elseif (weapon:GetVelocity():Length() <= 0.3) then
                weapon:PhysicsDestroy()
+               currentPos = weapon:GetPos()
+               if(string.find(weapon:GetClass(),"tfa")) then        //tfa weapons have weird colliders and usually are in ground. To counter this, TFA weapons are 5 units higher after "freezing"
+                  weapon:SetPos(Vector(currentPos.x,currentPos.y,currentPos.z+5))
+               end
                CheckGround = false 
           end
        
